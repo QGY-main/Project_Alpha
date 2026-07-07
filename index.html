@@ -269,6 +269,39 @@
     font-size:0.95rem;font-weight:500;word-break:break-word;
   }
 
+  /* FAQ ACCORDION */
+  .faq-list{
+    max-width:760px;margin-top:36px;
+    border-top:1px solid var(--line);
+  }
+  .faq-item{border-bottom:1px solid var(--line);}
+  .faq-q{
+    width:100%;
+    display:flex;align-items:center;justify-content:space-between;gap:20px;
+    background:none;border:none;cursor:pointer;
+    padding:22px 4px;
+    text-align:left;
+    font-family:'Newsreader',serif;font-size:1.08rem;color:var(--ink);
+  }
+  .faq-plus{
+    flex-shrink:0;
+    width:28px;height:28px;border-radius:50%;
+    border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Inter',sans-serif;font-size:1.1rem;color:var(--clay);
+    transition:transform .3s ease, border-color .3s ease;
+  }
+  .faq-item.open .faq-plus{transform:rotate(45deg);border-color:var(--clay);}
+  .faq-a{
+    max-height:0;overflow:hidden;
+    transition:max-height .35s ease, padding .35s ease;
+  }
+  .faq-a p{
+    color:var(--slate);font-size:0.95rem;line-height:1.7;
+    padding:0 4px 22px;max-width:660px;
+  }
+  .faq-item.open .faq-a{max-height:260px;}
+
   @media (prefers-reduced-motion: reduce){
     *{transition:none !important;}
   }
@@ -285,7 +318,8 @@
       <li><a href="#objectives">03 · Objectives</a></li>
       <li><a href="#members">04 · Team</a></li>
       <li><a href="#looking-ahead">05 · Ahead</a></li>
-      <li><a href="#contact">06 · Contact</a></li>
+      <li><a href="#faq">06 · FAQ</a></li>
+      <li><a href="#contact">07 · Contact</a></li>
     </ul>
   </div>
 </nav>
@@ -442,9 +476,56 @@
   </div>
 </section>
 
+<section id="faq">
+  <div class="wrap">
+    <a class="label" href="#faq">06 · FAQ</a>
+    <h2 style="font-size:2rem;margin-top:14px;max-width:640px;">Common questions.</h2>
+    <div class="faq-list">
+      <div class="faq-item open">
+        <button class="faq-q">
+          <span>Who are our teachers and mentors?</span>
+          <span class="faq-plus">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Our exco members take on the role of teachers and mentors. Because Project Alpha is built to run over the long term, we prioritise recruiting members who can commit for its full duration — this consistency is what lets us track a student's progress and provide continuous, rather than one-off, support.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">
+          <span>How do we ensure the quality of teaching and materials?</span>
+          <span class="faq-plus">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Every tutor goes through a structured, multi-layered evaluation: an interview assessing how clearly they explain concepts, a standardised subject competency test, and a review of their academic track record. For materials, we prioritise school-provided resources aligned with the syllabus, and supplement with past-year papers and curated practice sets where needed.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">
+          <span>How do we look after the wellbeing of our mentors?</span>
+          <span class="faq-plus">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Every subject has at least two tutors assigned, so responsibilities can rotate between a lead teaching role, a supporting role, and materials preparation — no one carries every session at full intensity. Exco members also check in with each other regularly, and the schedule flexes around high-stress periods such as end-of-year exams.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">
+          <span>What happens after we graduate from secondary school?</span>
+          <span class="faq-plus">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Project Alpha is designed to outlast any one cohort. As founding members move on to Eunoia Junior College, we intend to carry the project forward there, recruit and train new volunteers, and continue expanding across schools — while returning ourselves as mentors and facilitators wherever we can.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
 <section id="contact">
   <div class="wrap">
-    <a class="label" href="#contact">06 · Contact us</a>
+    <a class="label" href="#contact">07 · Contact us</a>
     <h2 style="font-size:2rem;margin-top:14px;max-width:640px;">Get in touch.</h2>
     <p style="max-width:560px;color:var(--slate);line-height:1.7;font-size:1rem;margin-top:16px;margin-bottom:36px;">Questions about joining as a beneficiary, mentoring with us, or partnering with your school — reach out through either channel below.</p>
     <div class="contact-grid">
@@ -474,6 +555,17 @@
     <div class="foot-right">Empowering Hidden Struggles — Unlocking Academic Potential</div>
   </div>
 </footer>
+
+<script>
+  document.querySelectorAll('.faq-q').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item = btn.closest('.faq-item');
+      var wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(function(i){ i.classList.remove('open'); });
+      if(!wasOpen){ item.classList.add('open'); }
+    });
+  });
+</script>
 
 </body>
 </html>
